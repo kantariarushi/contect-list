@@ -1,6 +1,10 @@
 import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
+//import thunk from 'redux-thunk';
 import rootReducer from "../constants/reducers/rootReducer";
+import createSagaMiddleware from "redux-saga";
+import rootSaga from "./rootSaga";
+
+const sagaMiddleware = createSagaMiddleware();
 
 // const persistConfig = {
 //   key: 'root',
@@ -13,6 +17,8 @@ import rootReducer from "../constants/reducers/rootReducer";
 // const persistedReducer = persistReducer(rootReducer);
 
 export default () => {
-  const store = createStore(rootReducer, applyMiddleware(thunk));
+  //const store = createStore(rootReducer, applyMiddleware(thunk));
+  const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
+  sagaMiddleware.run(rootSaga);
   return { store };
 };

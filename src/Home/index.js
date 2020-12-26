@@ -6,7 +6,7 @@ import { showCart } from "../actions/homeAction";
 function Home(props) {
 
   const handelClick = async () => {
-    await props.showCart("rushi");
+    await props.showCart();
     console.log("here --->", props.cart);
   }
   return (
