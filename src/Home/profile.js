@@ -1,4 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import {fetchProfile} from "../actions/homeAction";
 
 const profile = (props) => {
 
@@ -18,17 +22,39 @@ const imageStyle = {
     borderRadius: 25
 }
 
-    const {id, email, firstName, lastName, profile} = props
+const selectProfile = async(id) => {
+        await props.fetchProfile(id)
+}
+
+    const {id, email, firstName, lastName, profileImage} = props
 
   return (
-        <a href="#" style={profileContainer} onClick={() => console.log(id)}>
-            <img src={profile} style={imageStyle} alt="Logo" />
+        <Link to={`/ProfileScreen/${id}`} style={profileContainer} onClick={() => selectProfile(id)}>
+            <img src={profileImage} style={imageStyle} alt="Logo" />
             <div style={{flexDirection: 'column', display: 'flex', marginLeft: 20}}>
                 <h1 style={{alignSelf: 'flex-start', marginTop: -10, color: 'black'}}>{firstName + lastName}</h1>
                 <a style={{marginTop: -20, color: 'black'}}>{email}</a>
             </div>
-        </a>
+        </Link>
     );
 };
 
-export default profile;
+const mapStateToProps = (state) => ({
+    profile: state.cartReducer.profile,
+});
+
+function mapDispatchToProps(dispatch) {
+ return {
+   ...bindActionCreators(
+     {
+        fetchProfile
+     },
+     dispatch
+   ),
+ };
+}
+
+export default connect(
+ mapStateToProps,
+ mapDispatchToProps
+)(profile);

@@ -15,7 +15,7 @@ function Home(props) {
     setLoading(false);
   }, [])
 
-  const data = props.cart.cart;
+  const data = props.cart;
 
   const getStartedContainer = {
     background:'linear-gradient(rgba(250,0,0,0.5),transparent)',
@@ -38,7 +38,7 @@ function Home(props) {
               email={item.email}
               firstName={item.first_name}
               lastName={item.last_name}
-              profile={item.avatar}
+              profileImage={item.avatar}
             />
           ))}
       </div>
@@ -47,7 +47,7 @@ function Home(props) {
 }
 
 const mapStateToProps = (state) => ({
-     cart: state.cartReducer,
+     cart: state.cartReducer.cart,
 });
 
 function mapDispatchToProps(dispatch) {
