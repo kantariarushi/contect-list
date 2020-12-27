@@ -5,12 +5,11 @@ const initialState = {
   };
   
   export default (state = initialState, action) => {
-    console.log("action.data --->", action);
     switch (action.type) {
-      case actionType.ADD_CART:
+      case actionType.ADD_DATA:
         return {
           ...state,
-          cart: action?.value,
+          cart: action.value,
         };  
       default:
         return state;

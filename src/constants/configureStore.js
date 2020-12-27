@@ -4,8 +4,6 @@ import rootReducer from "../constants/reducers/rootReducer";
 import createSagaMiddleware from "redux-saga";
 import rootSaga from "./rootSaga";
 
-const sagaMiddleware = createSagaMiddleware();
-
 // const persistConfig = {
 //   key: 'root',
 //   storage: AsyncStorage,
@@ -16,9 +14,9 @@ const sagaMiddleware = createSagaMiddleware();
 
 // const persistedReducer = persistReducer(rootReducer);
 
-export default () => {
   //const store = createStore(rootReducer, applyMiddleware(thunk));
+  const sagaMiddleware = createSagaMiddleware();
   const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
   sagaMiddleware.run(rootSaga);
-  return { store };
-};
+  
+  export default store;
