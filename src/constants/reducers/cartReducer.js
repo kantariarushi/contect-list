@@ -2,15 +2,20 @@ import * as actionType from "../actionType";
 
 const initialState = {
     cart: {},
+    profile:{}
   };
   
   export default (state = initialState, action) => {
-    console.log("action.data --->", action);
     switch (action.type) {
-      case actionType.SHOW_CART:
+      case actionType.ADD_DATA:
         return {
           ...state,
-          cart: action?.value,
+          cart: action.value,
+        };  
+      case actionType.ADD_PROFILE:
+        return {
+          ...state,
+          profile: action.value,
         };  
       default:
         return state;

@@ -1,7 +1,9 @@
 import * as actionType from "../constants/actionType";
 
-export function showCart(){
-    return (dispatch) => {
-        return dispatch({ type: actionType.SHOW_CART, value: "rushi"});
-    }
+export function fetchData(){
+    return { type: actionType.FETCH_DATA, status: 2}
 };
+
+export function fetchProfile(id){
+    return {type: actionType.FETCH_PROFILE, profileNo: id}
+}

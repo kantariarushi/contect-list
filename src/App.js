@@ -1,14 +1,19 @@
 import React from 'react';
 import { Provider } from "react-redux";
-import configureStore from "./constants/configureStore";
 import Home from "./Home";
-
-const { store } = configureStore()
+import ProfileScreen from "./ProfileScreen";
+import store from "./constants/configureStore";
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 function App() {
   return (
     <Provider store={store}>
-        <Home />
+      <BrowserRouter>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route path={"/ProfileScreen/:id"} component={ProfileScreen} />
+        </Switch>
+      </BrowserRouter>
     </Provider>
   );
 }
