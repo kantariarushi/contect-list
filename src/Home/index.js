@@ -4,7 +4,6 @@ import { bindActionCreators } from "redux";
 import { fetchData } from "../actions/homeAction";
 import Profile from "./profile";
 import gif from "../assets/image/Spin-1s-200px.gif"
-//import LinearGradient from 'react-native-linear-gradient';
 
 function Home(props) {
 
